@@ -26,8 +26,10 @@ import {
   ViewportGridService,
   HangingProtocolService,
   pubSubServiceInterface,
+  PubSubService,
   UserAuthenticationService,
   SegmentationService,
+  GuiCustomizationService,
 } from './services';
 
 import IWebApiDataSource from './DataSources/IWebApiDataSource';
@@ -108,6 +110,9 @@ export {
   IWebApiDataSource,
   DicomMetadataStore,
   pubSubServiceInterface,
+  GuiCustomizationService,
+  Types,
+  PubSubService,
   Types,
 };
 
