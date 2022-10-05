@@ -11,11 +11,10 @@ import {
   segmentation,
   utilities as csToolsUtils,
 } from '@cornerstonejs/tools';
+import { ContextMenu } from '@ohif/ui';
 
 import CornerstoneViewportDownloadForm from './utils/CornerstoneViewportDownloadForm';
 import { connectToolsToMeasurementService } from './initMeasurementService';
-import { ViewerContextMenuController } from './ViewerContextMenu/ViewerContextMenuController';
-
 import { getEnabledElement as OHIFgetEnabledElement } from './state';
 import callInputDialog from './utils/callInputDialog';
 import { setColormap } from './utils/colormap/transferFunctionHelpers';
@@ -37,7 +36,8 @@ const commandsModule = ({ servicesManager, commandsManager }) => {
     HangingProtocolService,
   } = servicesManager.services;
 
-  const contextMenuController = new ViewerContextMenuController(
+  console.log('* ContextMenu.Controller=', ContextMenu.Controller);
+  const contextMenuController = new ContextMenu.Controller(
     servicesManager,
     commandsManager
   );
@@ -105,7 +105,7 @@ const commandsModule = ({ servicesManager, commandsManager }) => {
       );
     }
 
-    contextMenuController.showViewerContextMenu(
+    contextMenuController.showContextMenu(
       options,
       viewerElement,
       defaultPointsPosition

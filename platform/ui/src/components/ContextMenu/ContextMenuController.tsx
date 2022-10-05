@@ -1,4 +1,4 @@
-import ContextMenuItemsBuilder from './ContextMenuItemsBuilder';
+import * as ContextMenuItemsBuilder from './ContextMenuItemsBuilder';
 import { ContextMenuMeasurements } from '@ohif/ui';
 
 const getDefaultPosition = () => {
@@ -76,7 +76,7 @@ const _getDefaultPosition = (canvasPoints, eventDetail, viewerElement) => {
   return position;
 };
 
-export class ViewerContextMenuController {
+export default class ContextMenuController {
   commandsManager: Record<string, unknown>;
   services: Record<string, unknown>;
 
@@ -107,11 +107,11 @@ export class ViewerContextMenuController {
     this.services.UIDialogService.dismiss({ id: 'context-menu' });
   }
 
-  showViewerContextMenu(
-    contextMenuProps,
+  showContextMenu(
+    contextMenuProps: Record<string, unknown>,
     activeViewerElement,
     defaultPointsPosition
-  ) {
+  ): void {
     if (!this.services.UIDialogService) {
       console.warn('Unable to show dialog; no UI Dialog Service available.');
       return;
@@ -133,7 +133,7 @@ export class ViewerContextMenuController {
       // nearbyToolData is included both by name and value
       // because the value version of it is used as the generic value copy,
       // whereas the nearbyToolData is used by selector functions
-      return new ContextMenuItemsBuilder().getMenuItems(
+      return ContextMenuItemsBuilder.getMenuItems(
         {
           toolName: _nearbyToolData?.metadata?.toolName,
           value: _nearbyToolData,
@@ -203,7 +203,7 @@ export class ViewerContextMenuController {
             console.warn('No submenu defined for', item, itemRef, subProps);
             return;
           }
-          this.showViewerContextMenu(
+          this.showContextMenu(
             {
               ...contextMenuProps,
               menuId: itemRef.subMenu,

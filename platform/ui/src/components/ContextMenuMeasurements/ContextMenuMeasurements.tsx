@@ -48,6 +48,7 @@ ContextMenuMeasurements.propTypes = {
   onClose: PropTypes.func.isRequired,
   onRunCommands: PropTypes.func.isRequired,
   onGetMenuItems: PropTypes.func.isRequired,
+  refs: PropTypes.object,
 };
 
 export default ContextMenuMeasurements;
