@@ -1,19 +1,39 @@
-import { eventTarget, EVENTS } from '@cornerstonejs/core';
+import { eventTarget, Types, EVENTS } from '@cornerstonejs/core';
 import { Enums } from '@cornerstonejs/tools';
 import { setEnabledElement } from './state';
-import defaultContextMenu from './defaultContextMenu';
+import { ContextMenuMeasurements } from '@ohif/ui';
 
 const cs3DToolsEvents = Enums.Events;
 
+const showContextMenuDefault: Types.CommandUICustomization = {
+  commands: [
+    {
+      commandName: 'showViewerContextMenu',
+      commandOptions: {
+        menuName: 'cornerstoneContextMenu',
+        content: ContextMenuMeasurements,
+      },
+      context: 'CORNERSTONE',
+    },
+  ],
+};
+
 function initContextMenu({
   CornerstoneViewportService,
-  guiCustomizationService,
+  uiCustomizationService,
   commandsManager,
-}) {
-  const getContextMenu = () => guiCustomizationService.getModeCustomization('cornerstoneContextMenu', defaultContextMenu);
+}): void {
+  const getShowContextMenu = (): Types.UICommand =>
+    uiCustomizationService.getModeCustomization(
+      'showContextMenu',
+      showContextMenuDefault
+    );
 
-  const showContextMenu = contextMenuProps => {
-    guiCustomizationService.recordInteraction(getContextMenu()?.props?.show, contextMenuProps);
+  const showContextMenu = (contextMenuProps): void => {
+    uiCustomizationService.recordInteraction(
+      getShowContextMenu(),
+      contextMenuProps
+    );
   };
 
   const onRightClick = event => {
@@ -24,13 +44,13 @@ function initContextMenu({
   };
 
   // TODO No CS3D support yet
-  const onTouchPress = event => {
-    showContextMenu({
-      event,
-      nearbyToolData: undefined,
-      isTouchEvent: true,
-    });
-  };
+  // const onTouchPress = event => {
+  //   showContextMenu({
+  //     event,
+  //     nearbyToolData: undefined,
+  //     isTouchEvent: true,
+  //   });
+  // };
 
   const resetContextMenu = () => {
     commandsManager.runCommand('closeViewerContextMenu');

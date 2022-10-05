@@ -6,7 +6,11 @@ import {
 
 import Consumer from './Consumer';
 
+import { UICustomizationService, PubSubService } from '../services';
 import * as HangingProtocol from './HangingProtocol';
+import Command from './Command';
+
+export * from '../services/UICustomizationService/types';
 
 export type {
   HangingProtocol,
@@ -14,4 +18,7 @@ export type {
   SeriesMetadata,
   InstanceMetadata,
   Consumer,
+  PubSubService,
+  UICustomizationService,
+  Command,
 };

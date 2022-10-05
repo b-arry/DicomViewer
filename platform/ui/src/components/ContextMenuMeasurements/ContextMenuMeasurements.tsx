@@ -2,7 +2,6 @@ import { ContextMenu } from '../';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-
 const imageAreaMenus = [
   {
     id: 'forExistingMeasurement',
@@ -14,7 +13,7 @@ const imageAreaMenus = [
         commands: [
           {
             commandName: 'deleteMeasurement',
-          }
+          },
         ],
       },
       {
@@ -24,18 +23,19 @@ const imageAreaMenus = [
           {
             commandName: 'setLabel',
           },
-        ]
+        ],
       },
     ],
   },
 ];
 
-const ContextMenuMeasurements = ({ onGetMenuItems, refs = {}, items = imageAreaMenus, ...props }) => {
-  const menuItems = onGetMenuItems(
-    items,
-    refs,
-    props
-  );
+const ContextMenuMeasurements = ({
+  onGetMenuItems,
+  refs = {},
+  items = imageAreaMenus,
+  ...props
+}) => {
+  const menuItems = onGetMenuItems(items, refs, props);
 
   if (!menuItems) {
     return null;

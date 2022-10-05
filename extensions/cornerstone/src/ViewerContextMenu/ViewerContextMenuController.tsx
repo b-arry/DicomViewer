@@ -7,6 +7,7 @@ const getDefaultPosition = () => {
     y: 0,
   };
 };
+
 const _getEventDefaultPosition = eventDetail => ({
   x: eventDetail && eventDetail.currentPoints.client[0],
   y: eventDetail && eventDetail.currentPoints.client[1],
@@ -116,7 +117,14 @@ export class ViewerContextMenuController {
       return;
     }
 
-    const { event, subMenu, menuId, nearbyToolData, items, refs, } = contextMenuProps;
+    const {
+      event,
+      subMenu,
+      menuId,
+      nearbyToolData,
+      items,
+      refs,
+    } = contextMenuProps;
     const _nearbyToolData =
       nearbyToolData || this.findNearbyToolData(this.commandsManager, event);
 
@@ -165,14 +173,19 @@ export class ViewerContextMenuController {
         refs,
         onRunCommands: item => {
           const { commands } = item;
-          const { annotationUID: uid } = item.value;
+          const { annotationUID: uid } = item.value; // TODO - make this annotationUID and ensure this works
 
           commands.forEach(command =>
-            this.commandsManager.runCommand(command.commandName,
+            this.commandsManager.runCommand(
+              command.commandName,
               {
-                ...command.commandOptions, uid, refs,
+                ...command.commandOptions,
+                uid,
+                refs,
               },
-              command.context));
+              command.context
+            )
+          );
         },
 
         onClose: () => {
@@ -208,14 +221,16 @@ export class ViewerContextMenuController {
             return;
           }
 
-          this.commandsManager.runCommand(commandName,
+          this.commandsManager.runCommand(
+            commandName,
             {
               ...itemRef,
               ...commandOptions,
               uid,
               refs,
             },
-            context);
+            context
+          );
         },
       },
     });

@@ -57,7 +57,7 @@ export default async function init({
   const {
     UserAuthenticationService,
     ToolGroupService,
-    guiCustomizationService,
+    uiCustomizationService,
     CineService,
     CornerstoneViewportService,
     HangingProtocolService,
@@ -122,7 +122,7 @@ export default async function init({
 
   initContextMenu({
     CornerstoneViewportService,
-    guiCustomizationService,
+    uiCustomizationService,
     commandsManager,
   });
 
@@ -161,4 +161,3 @@ export default async function init({
     elementDisabledHandler.bind(null)
   );
 }
-

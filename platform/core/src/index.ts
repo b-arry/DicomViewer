@@ -26,10 +26,9 @@ import {
   ViewportGridService,
   HangingProtocolService,
   pubSubServiceInterface,
-  PubSubService,
   UserAuthenticationService,
   SegmentationService,
-  GuiCustomizationService,
+  UICustomizationServiceRegistration,
 } from './services';
 
 import IWebApiDataSource from './DataSources/IWebApiDataSource';
@@ -60,6 +59,7 @@ const OHIF = {
   viewer: {},
   //
   CineService,
+  UICustomizationServiceRegistration,
   UIDialogService,
   UIModalService,
   UINotificationService,
@@ -96,6 +96,7 @@ export {
   DICOMWeb,
   //
   CineService,
+  UICustomizationServiceRegistration,
   UIDialogService,
   UIModalService,
   UINotificationService,
@@ -110,9 +111,6 @@ export {
   IWebApiDataSource,
   DicomMetadataStore,
   pubSubServiceInterface,
-  GuiCustomizationService,
-  Types,
-  PubSubService,
   Types,
 };
 

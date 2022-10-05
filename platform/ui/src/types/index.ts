@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import ThumbnailType from './ThumbnailType';
-
 // A few miscellaneous types declared inline here.
 
 /**

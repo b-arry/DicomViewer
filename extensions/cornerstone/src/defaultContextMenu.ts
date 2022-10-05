@@ -1,50 +1,36 @@
-import { ContextMenuMeasurements } from "@ohif/ui";
+import { ContextMenuMeasurements } from '@ohif/ui';
+import { Types } from '@ohif/core';
 
-const defaultContextMenu = {
+const defaultContextMenu: Types.CommandUICustomization = {
   id: 'cornerstoneContextMenu',
-  type: 'ohif.contextMenu',
-  props: {
-    show: {
-      id: 'show-menu',
-      interactionType: 'action',
-      commands: [
+  uiType: 'ohif.contextMenu',
+  items: [
+    // Get the items from the UI Customization for the menu name (and have a custom name)
+    {
+      id: 'forExistingMeasurement',
+      selector: ({ nearbyToolData }) => !!nearbyToolData,
+      items: [
         {
-          commandName: 'showViewerContextMenu',
-          commandOptions: {
-            menuName: 'cornerstoneContextMenu',
-            content: ContextMenuMeasurements,
-            items: [
-              {
-                id: 'forExistingMeasurement',
-                selector: ({ nearbyToolData }) => !!nearbyToolData,
-                items: [
-                  {
-                    label: 'Delete measurement',
-                    actionType: 'RunCommands',
-                    commands: [
-                      {
-                        commandName: 'deleteMeasurement',
-                      }
-                    ],
-                  },
-                  {
-                    label: 'Add Label',
-                    actionType: 'RunCommands',
-                    commands: [
-                      {
-                        commandName: 'setLabel',
-                      },
-                    ]
-                  },
-                ],
-              },
-            ],
-          },
-          context: 'CORNERSTONE',
+          label: 'Delete measurement',
+          actionType: 'RunCommands',
+          commands: [
+            {
+              commandName: 'deleteMeasurement',
+            },
+          ],
+        },
+        {
+          label: 'Add Label',
+          actionType: 'RunCommands',
+          commands: [
+            {
+              commandName: 'setLabel',
+            },
+          ],
         },
       ],
     },
-  },
+  ],
 };
 
 export default defaultContextMenu;

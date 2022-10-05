@@ -20,6 +20,7 @@ import { getEnabledElement as OHIFgetEnabledElement } from './state';
 import callInputDialog from './utils/callInputDialog';
 import { setColormap } from './utils/colormap/transferFunctionHelpers';
 import { getFirstAnnotationSelected } from './utils/measurementServiceMappings/utils/selection';
+import defaultContextMenu from './defaultContextMenu';
 
 const commandsModule = ({ servicesManager, commandsManager }) => {
   const {
@@ -27,6 +28,7 @@ const commandsModule = ({ servicesManager, commandsManager }) => {
     ToolGroupService,
     CineService,
     ToolBarService,
+    uiCustomizationService,
     UIDialogService,
     MeasurementService,
     DisplaySetService,
@@ -112,10 +114,23 @@ const commandsModule = ({ servicesManager, commandsManager }) => {
 
   const actions = {
     /** Show the specified context menu */
-    showViewerContextMenu: options => {
+    showViewerContextMenu: providedOptions => {
       const viewerElement = _getActiveEnabledElement();
 
-      if (options.useSelectedAnnotation && !options.nearbyToolData) {
+      const options = { ...providedOptions };
+      const { useSelectedAnnotation, nearbyToolData, menuName } = options;
+
+      if (menuName) {
+        Object.assign(
+          options,
+          uiCustomizationService.getModeCustomization(
+            menuName,
+            defaultContextMenu
+          )
+        );
+      }
+
+      if (useSelectedAnnotation && !nearbyToolData) {
         const firstAnnotationSelected = getFirstAnnotationSelected(
           viewerElement
         );

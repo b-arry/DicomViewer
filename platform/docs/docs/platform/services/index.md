@@ -116,6 +116,17 @@ The following services is available in the `OHIF-v3`.
         </tr>
         <tr>
             <td>
+                <a href="./ui/ui-configuration-service">
+                    UIConfigurationService
+                </a>
+            </td>
+            <td>UI Service</td>
+            <td>
+                UIConfigurationService
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <a href="./ui/ui-dialog-service">
                     UIDialogService
                 </a>
